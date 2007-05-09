@@ -1,7 +1,5 @@
-require 'lib/recurring_event'
-
 module RecurringEvent
-  class Expression
+  module Expression
     attr_reader :rule, :conditions
     def initialize(rule=nil, conditions=[])
       @rule = rule
@@ -16,6 +14,7 @@ module RecurringEvent
       end
     end
     def and( expression )
+      @conditions ||= []
       if @rule == :intersect or @rule.nil?
         @conditions << expression
         @rule ||= :intersect
@@ -26,6 +25,7 @@ module RecurringEvent
     end
     alias_method :&, :and
     def or( expression )
+      @conditions ||= []
       if @rule == :union or @rule.nil?
         @conditions << expression
         @rule ||= :union

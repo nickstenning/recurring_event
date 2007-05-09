@@ -1,8 +1,8 @@
-require 'lib/recurring_event'
 require 'vendor/metaid'
 
 module RecurringEvent
-  class Week < DateExpression
+  class Week
+    include DateExpression
     %w[month year].each do |t|
       meta_def("in_#{t}") { |*args| self.new.send("in_#{t}", *args) }
       meta_def("range_each_#{t}") { |*args| self.new.send("range_each_#{t}", *args) }

@@ -1,8 +1,12 @@
 require 'lib/recurring_event'
 
+class SimpleExpression
+  include RecurringEvent::Expression
+end
+
 describe "A new expression" do
   before(:each) do
-    @e = RecurringEvent::Expression.new
+    @e = SimpleExpression.new
   end
   it "should have no conditions defined" do
     @e.conditions.should be_empty
@@ -30,7 +34,7 @@ end
 
 describe "An expression with one simple condition" do
   before(:each) do
-    @e = RecurringEvent::Expression.new
+    @e = SimpleExpression.new
     @e &= RecurringEvent::Day.in_month(1)
   end
   it "should include the time points when that condition is matched" do
@@ -64,11 +68,11 @@ end
 
 describe "An expression with an intersect rule and n conditions" do
   before(:each) do
-    @e = RecurringEvent::Expression.new & \
+    @e = SimpleExpression.new & \
          RecurringEvent::Day.in_month(1) & \
          RecurringEvent::Month.in_year(3) & \
          RecurringEvent::Week.in_month(1)
-    @f = RecurringEvent::Expression.new & \
+    @f = SimpleExpression.new & \
          RecurringEvent::Day.in_month(1)
   end
   it "should have its rule set to :intersect" do
@@ -129,11 +133,11 @@ end
 
 describe "An expression with a union rule and n conditions" do
   before(:each) do
-    @e = RecurringEvent::Expression.new | \
+    @e = SimpleExpression.new | \
          RecurringEvent::Day.in_month(1) | \
          RecurringEvent::Day.in_month(2) | \
          RecurringEvent::Day.in_month(3)
-    @f = RecurringEvent::Expression.new | \
+    @f = SimpleExpression.new | \
          RecurringEvent::Day.in_month(4)
   end
   it "should have its rule set to :union" do

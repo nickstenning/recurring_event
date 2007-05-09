@@ -1,7 +1,8 @@
-require 'lib/recurring_event'
+require 'lib/recurring_event/expression'
 
 module RecurringEvent
-  class DateExpression < Expression
+  module DateExpression
+    include Expression
     attr_accessor :condition
     def initialize( *args )
       @condition = proc { false }
