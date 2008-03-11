@@ -1,4 +1,4 @@
-= RecurringEvent - An(other) implementation of Fowler's recurring event pattern.
+# RecurringEvent - An(other) implementation of Fowler's recurring event pattern.
 
 RecurringEvent is an attempt to make a more rubyish version of Martin Fowler's 
 Recurring Event pattern, a la Runt. Where Runt has DIMonth, REYear, and so on, 
